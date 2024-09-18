@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
@@ -6,9 +5,20 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Auth from "./layout/Auth.jsx";
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
+import Authlayout from "./layout/Authlayout.jsx";
+import AdminLayout from "./layout/AdminLayout.jsx";
+import AdminDashboard from "./pages/adminView/AdminDashboard.jsx";
+import AdminProducts from "./pages/adminView/AdminProducts.jsx";
+import AdminOrders from "./pages/adminView/AdminOrders.jsx";
+import AdminFeatures from "./pages/adminView/AdminFeatures.jsx";
+import ShoppingLayout from "./layout/ShoppingLayout.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import ShoppingHome from "./pages/shoppingView/ShoppingHome.jsx";
+import ShoppingListing from "./pages/shoppingView/ShoppingListing.jsx";
+import ShoppingAccount from "./pages/shoppingView/ShoppingAccount.jsx";
+import ShoppingCheckout from "./pages/shoppingView/ShoppingCheckout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +27,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/auth",
-        element: <Auth />,
+        element: <Authlayout />,
         children: [
           {
             path: "/auth/login",
@@ -28,6 +38,54 @@ const router = createBrowserRouter([
             element: <Register />,
           },
         ],
+      },
+      {
+        path: "/admin",
+        element: <AdminLayout />,
+        children: [
+          {
+            path: "/admin/dashboard",
+            element: <AdminDashboard />,
+          },
+          {
+            path: "/admin/products",
+            element: <AdminProducts />,
+          },
+          {
+            path: "/admin/orders",
+            element: <AdminOrders />,
+          },
+          {
+            path: "/admin/features",
+            element: <AdminFeatures />,
+          },
+        ],
+      },
+      {
+        path: "/shop",
+        element: <ShoppingLayout />,
+        children: [
+          {
+            path: "/shop/home",
+            element: <ShoppingHome />,
+          },
+          {
+            path: "/shop/listing",
+            element: <ShoppingListing />,
+          },
+          {
+            path: "/shop/account",
+            element: <ShoppingAccount />,
+          },
+          {
+            path: "/shop/checkout",
+            element: <ShoppingCheckout />,
+          },
+        ],
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

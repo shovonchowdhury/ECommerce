@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-export default function Auth() {
+export default function Authlayout() {
   return (
     <div className="flex min-h-screen w-full">
       <div className="hidden lg:flex w-1/2 items-center justify-center bg-black">
