@@ -23,5 +23,21 @@ export default function CheckAuth({ isAuthenticated, user, children }) {
     else return <Navigate to={"/shop/home"} />;
   }
 
-  return <div>CheckAuth</div>;
+  if (
+    isAuthenticated &&
+    user?.role !== "admin" &&
+    location.pathname.includes("admin")
+  ) {
+    return <Navigate to="/unauth-page" />;
+  }
+
+  if (
+    isAuthenticated &&
+    user?.role === "admin" &&
+    location.pathname.includes("shop")
+  ) {
+    return <Navigate to="/admin/dashboard" />;
+  }
+
+  return <>{children}</>;
 }

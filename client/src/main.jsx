@@ -19,7 +19,13 @@ import ShoppingHome from "./pages/shoppingView/ShoppingHome.jsx";
 import ShoppingListing from "./pages/shoppingView/ShoppingListing.jsx";
 import ShoppingAccount from "./pages/shoppingView/ShoppingAccount.jsx";
 import ShoppingCheckout from "./pages/shoppingView/ShoppingCheckout.jsx";
+import CheckAuth from "./components/common/CheckAuth.jsx";
+import UnAuthPage from "./pages/UnAuthPage.jsx";
 
+const isAuthenticated = true;
+const user = {
+  role: "shop",
+};
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +33,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/auth",
-        element: <Authlayout />,
+        element: (
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <Authlayout />
+          </CheckAuth>
+        ),
         children: [
           {
             path: "/auth/login",
@@ -41,7 +51,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin",
-        element: <AdminLayout />,
+        element: (
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <AdminLayout />
+          </CheckAuth>
+        ),
         children: [
           {
             path: "/admin/dashboard",
@@ -63,7 +77,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/shop",
-        element: <ShoppingLayout />,
+        element: (
+          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+            <ShoppingLayout />
+          </CheckAuth>
+        ),
         children: [
           {
             path: "/shop/home",
@@ -82,6 +100,10 @@ const router = createBrowserRouter([
             element: <ShoppingCheckout />,
           },
         ],
+      },
+      {
+        path: "/unauth-page",
+        element: <UnAuthPage />,
       },
       {
         path: "*",
