@@ -22,7 +22,7 @@ import ShoppingCheckout from "./pages/shoppingView/ShoppingCheckout.jsx";
 import CheckAuth from "./components/common/CheckAuth.jsx";
 import UnAuthPage from "./pages/UnAuthPage.jsx";
 
-const isAuthenticated = true;
+const isAuthenticated = false;
 const user = {
   role: "shop",
 };
