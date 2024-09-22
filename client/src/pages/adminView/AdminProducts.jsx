@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function AdminProducts() {
-  return <div>Admin</div>;
+  return <div>Admin products</div>;
 }

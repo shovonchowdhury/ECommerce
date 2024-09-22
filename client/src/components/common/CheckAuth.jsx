@@ -1,8 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
-export default function CheckAuth({ isAuthenticated, user, children }) {
+export default function CheckAuth({ children }) {
+  const { isAuthenticated, user, isLoading } = useSelector(
+    (state) => state.auth
+  );
   const location = useLocation();
+  console.log(isAuthenticated, user, location.pathname);
+
+  if (isLoading) return <div>Loading...</div>;
 
   if (
     !isAuthenticated &&

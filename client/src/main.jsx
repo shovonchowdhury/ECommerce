@@ -3,7 +3,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./store/store.js";
+import store, { persistor } from "./store/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
@@ -21,11 +21,8 @@ import ShoppingAccount from "./pages/shoppingView/ShoppingAccount.jsx";
 import ShoppingCheckout from "./pages/shoppingView/ShoppingCheckout.jsx";
 import CheckAuth from "./components/common/CheckAuth.jsx";
 import UnAuthPage from "./pages/UnAuthPage.jsx";
+import { PersistGate } from "redux-persist/integration/react";
 
-const isAuthenticated = false;
-const user = {
-  role: "shop",
-};
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,7 +31,7 @@ const router = createBrowserRouter([
       {
         path: "/auth",
         element: (
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth>
             <Authlayout />
           </CheckAuth>
         ),
@@ -52,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: (
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth>
             <AdminLayout />
           </CheckAuth>
         ),
@@ -78,7 +75,7 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: (
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth>
             <ShoppingLayout />
           </CheckAuth>
         ),
@@ -115,6 +112,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <PersistGate persistor={persistor}>
+      <RouterProvider router={router} />
+    </PersistGate>
   </Provider>
 );
