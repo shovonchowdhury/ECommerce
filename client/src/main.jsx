@@ -29,6 +29,10 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/",
+        element: <CheckAuth />,
+      },
+      {
         path: "/auth",
         element: (
           <CheckAuth>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function CheckAuth({ children }) {
   const { isAuthenticated, user, isLoading } = useSelector(
@@ -9,7 +10,19 @@ export default function CheckAuth({ children }) {
   const location = useLocation();
   console.log(isAuthenticated, user, location.pathname);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Skeleton className="w-full h-[600px] " />;
+
+  if (location.pathname === "/") {
+    if (!isAuthenticated) {
+      return <Navigate to="/auth/login" />;
+    } else {
+      if (user?.role === "admin") {
+        return <Navigate to="/admin/dashboard" />;
+      } else {
+        return <Navigate to="/shop/home" />;
+      }
+    }
+  }
 
   if (
     !isAuthenticated &&
