@@ -42,9 +42,11 @@ function MenuItems({ setOpen }) {
             navigate(menuItem.path);
             setOpen ? setOpen(false) : null;
           }}
-          className={`flex cursor-pointer text-xl items-center gap-2  px-3 py-2 text-muted-foreground hover:bg-muted hover:text-foreground ${
-            location.pathname == menuItem.path && "bg-muted text-black"
-          }`}
+          className={`flex cursor-pointer text-xl items-center gap-2 px-3 py-2 ${
+            location.pathname === menuItem.path
+              ? "bg-muted text-black text-2xl"
+              : "text-muted-foreground"
+          } hover:bg-muted hover:text-foreground`}
         >
           {menuItem.icon}
           <span>{menuItem.label}</span>
