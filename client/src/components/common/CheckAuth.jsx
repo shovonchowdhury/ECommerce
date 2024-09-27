@@ -16,18 +16,21 @@ export default function CheckAuth({ children }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev < 100) {
-          return prev + 10; // Increment progress by 10
-        } else {
-          return 0; // Reset progress to 0 after reaching 100
-        }
-      });
-    }, 1000); // Update every second
+    if (isLoading) {
+      setProgress(0);
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev < 100) {
+            return prev + 30; // Increment progress by 10
+          } else {
+            return 0; // Reset progress to 0 after reaching 100
+          }
+        });
+      }, 200); // Update every second
 
-    return () => clearInterval(interval); // Cleanup on unmount
-  }, []);
+      return () => clearInterval(interval); // Cleanup on unmount
+    }
+  }, [isLoading]);
 
   if (isLoading)
     return (
