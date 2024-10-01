@@ -2,7 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import authReducer from './slice/authSlice';
-import productReducer from './slice/admin/adminProductSlice'
+import adminProductSlice from './slice/admin/adminProductSlice'
+import shoppingProductsSlice from './slice/shop/shoppingProductsSlice';
 
 const persistConfig = {
   key: 'root',
@@ -10,12 +11,15 @@ const persistConfig = {
 };
 
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
-const persistedProductReducer = persistReducer(persistConfig, productReducer); 
+const persistedAdminProductReducer = persistReducer(persistConfig, adminProductSlice); 
+const persistedShoppingProductReducer = persistReducer(persistConfig, shoppingProductsSlice); 
 
 const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    adminProducts: persistedProductReducer
+    adminProducts: persistedAdminProductReducer,
+
+    shopProducts: persistedShoppingProductReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
