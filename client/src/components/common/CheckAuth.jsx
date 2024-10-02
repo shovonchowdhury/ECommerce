@@ -26,7 +26,7 @@ export default function CheckAuth({ children }) {
             return 0; // Reset progress to 0 after reaching 100
           }
         });
-      }, 200); // Update every second
+      }, 600); // Update every second
 
       return () => clearInterval(interval); // Cleanup on unmount
     }
