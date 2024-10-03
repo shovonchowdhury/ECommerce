@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
@@ -17,6 +17,8 @@ import {
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { logoutUser } from "@/store/slice/authSlice";
+import { fetchCartItems } from "@/store/slice/shop/shoppingCartSlice";
+import UserCartWrapper from "./UserCartWrapper";
 
 function MenuItems() {
   const navigate = useNavigate();
@@ -38,8 +40,8 @@ function MenuItems() {
 
 function HeaderRightContent() {
   const { user } = useSelector((state) => state.auth);
-  // const { cartItems } = useSelector((state) => state.shopCart);
-  // const [openCartSheet, setOpenCartSheet] = useState(false);
+  const { cartItems } = useSelector((state) => state.shopCart);
+  const [openCartSheet, setOpenCartSheet] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -47,36 +49,36 @@ function HeaderRightContent() {
     dispatch(logoutUser());
   }
 
-  // useEffect(() => {
-  //   dispatch(fetchCartItems(user?.id));
-  // }, [dispatch]);
-
-  // console.log(cartItems, "sangam");
+  useEffect(() => {
+    dispatch(fetchCartItems(user?.id));
+  }, [dispatch]);
 
   console.log(user);
 
   return (
     <div className="flex lg:items-center lg:flex-row flex-col gap-4">
-      <Button
-        // onClick={() => setOpenCartSheet(true)}
-        variant="outline"
-        size="icon"
-        // className="relative"
-      >
-        <ShoppingCart className="w-6 h-6" />
-        {/* <span className="absolute top-[-5px] right-[2px] font-bold text-sm">
+      <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
+        <Button
+          onClick={() => setOpenCartSheet(true)}
+          variant="outline"
+          size="icon"
+          className="relative"
+        >
+          <ShoppingCart className="w-6 h-6" />
+          <span className="absolute top-[-5px] right-[2px] font-bold text-sm">
             {cartItems?.items?.length || 0}
-          </span> */}
-        <span className="sr-only">User cart</span>
-      </Button>
-      {/* <UserCartWrapper
+          </span>
+          <span className="sr-only">User cart</span>
+        </Button>
+        <UserCartWrapper
           setOpenCartSheet={setOpenCartSheet}
           cartItems={
             cartItems && cartItems.items && cartItems.items.length > 0
               ? cartItems.items
               : []
           }
-        /> */}
+        />
+      </Sheet>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild className="cursor-pointer">

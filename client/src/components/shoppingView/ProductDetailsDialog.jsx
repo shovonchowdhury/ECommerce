@@ -6,14 +6,51 @@ import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { StarIcon } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  fetchCartItems,
+} from "@/store/slice/shop/shoppingCartSlice";
+import { useToast } from "@/hooks/use-toast";
+import { setProductDetails } from "@/store/slice/shop/shoppingProductsSlice";
 
 export default function ProductDetailsDialog({
   open,
   setOpen,
   productDetails,
 }) {
+  const { user } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+  const { toast } = useToast();
+
+  function handleDialogClose() {
+    setOpen(false);
+    dispatch(setProductDetails());
+    // setRating(0);
+    // setReviewMsg("");
+  }
+
+  function handleAddtoCart(getCurrentProductId) {
+    console.log(getCurrentProductId);
+
+    dispatch(
+      addToCart({
+        userId: user?.id,
+        productId: getCurrentProductId,
+        quantity: 1,
+      })
+    ).then((data) => {
+      console.log(data?.payload);
+      if (data?.payload?.success) {
+        dispatch(fetchCartItems(user?.id));
+        toast({
+          title: "Product is added to cart",
+        });
+      }
+    });
+  }
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={() => handleDialogClose()}>
       <DialogContent className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
         <div className="relative overflow-hidden rounded-lg">
           <img
@@ -65,7 +102,12 @@ export default function ProductDetailsDialog({
                 Out of Stock
               </Button>
             ) : (
-              <Button className="w-full">Add to Cart</Button>
+              <Button
+                className="w-full"
+                onClick={() => handleAddtoCart(productDetails?._id)}
+              >
+                Add to Cart
+              </Button>
             )}
           </div>
           <Separator />
