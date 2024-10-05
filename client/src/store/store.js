@@ -5,6 +5,7 @@ import authReducer from './slice/authSlice';
 import adminProductSlice from './slice/admin/adminProductSlice';
 import shoppingProductSlice from './slice/shop/shoppingProductsSlice';
 import shoppingCartSlice from './slice/shop/shoppingCartSlice';
+import shoppingAddressSlice from './slice/shop/shoppingAddressSlice';
 
 // Persist config for shoppingProductsSlice to exclude productDetails
 const shoppingProductsPersistConfig = {
@@ -24,12 +25,16 @@ const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 const persistedAdminProductReducer = persistReducer(persistConfig, adminProductSlice);
 const persistedShoppingProductReducer = persistReducer(shoppingProductsPersistConfig, shoppingProductSlice);
 const persistedShoppingCartReducer = persistReducer(persistConfig, shoppingCartSlice);
+const persistedShoppingAddressReducer = persistReducer(persistConfig, shoppingAddressSlice);
+
+
 const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     adminProducts: persistedAdminProductReducer,
     shopProducts: persistedShoppingProductReducer, // Excluding productDetails
     shopCart: persistedShoppingCartReducer,
+    shopAddress: persistedShoppingAddressReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
