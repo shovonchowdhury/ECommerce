@@ -11,16 +11,16 @@ function AddressCard({
 }) {
   return (
     <Card
-    //   onClick={
-    //     setCurrentSelectedAddress
-    //       ? () => setCurrentSelectedAddress(addressInfo)
-    //       : null
-    //   }
-    //   className={`cursor-pointer border-red-700 ${
-    //     selectedId?._id === addressInfo?._id
-    //       ? "border-red-900 border-[4px]"
-    //       : "border-black"
-    //   }`}
+      onClick={
+        selectedId && selectedId?._id === addressInfo?._id
+          ? () => setCurrentSelectedAddress(null)
+          : () => setCurrentSelectedAddress(addressInfo)
+      }
+      className={`cursor-pointer border-red-700 ${
+        selectedId?._id === addressInfo?._id
+          ? "border-red-900 border-[3px]"
+          : "border-black"
+      }`}
     >
       <CardContent className="grid p-6 gap-4">
         <Label>Address: {addressInfo?.address}</Label>

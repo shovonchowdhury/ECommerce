@@ -6,6 +6,7 @@ import adminProductSlice from './slice/admin/adminProductSlice';
 import shoppingProductSlice from './slice/shop/shoppingProductsSlice';
 import shoppingCartSlice from './slice/shop/shoppingCartSlice';
 import shoppingAddressSlice from './slice/shop/shoppingAddressSlice';
+import shoppingOrderSlice from './slice/shop/shoppingOrderSlice'
 
 // Persist config for shoppingProductsSlice to exclude productDetails
 const shoppingProductsPersistConfig = {
@@ -14,6 +15,12 @@ const shoppingProductsPersistConfig = {
   blacklist: ['productDetails'], // Exclude productDetails from persistence
 };
 
+
+const shoppingOrderPersistConfig = {
+  key: 'shoppingOrder',
+  storage,
+  blacklist: ['approvalURL'], // Exclude productDetails from persistence
+};
 // General persist config for authReducer and adminProductSlice
 const persistConfig = {
   key: 'root',
@@ -26,6 +33,7 @@ const persistedAdminProductReducer = persistReducer(persistConfig, adminProductS
 const persistedShoppingProductReducer = persistReducer(shoppingProductsPersistConfig, shoppingProductSlice);
 const persistedShoppingCartReducer = persistReducer(persistConfig, shoppingCartSlice);
 const persistedShoppingAddressReducer = persistReducer(persistConfig, shoppingAddressSlice);
+const persistedShoppingOrderReducer = persistReducer(shoppingOrderPersistConfig, shoppingOrderSlice);
 
 
 const store = configureStore({
@@ -35,6 +43,7 @@ const store = configureStore({
     shopProducts: persistedShoppingProductReducer, // Excluding productDetails
     shopCart: persistedShoppingCartReducer,
     shopAddress: persistedShoppingAddressReducer,
+    shopOrder: persistedShoppingOrderReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

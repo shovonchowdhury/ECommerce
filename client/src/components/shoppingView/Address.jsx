@@ -126,11 +126,11 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
         {addressList && addressList.length > 0
           ? addressList.map((singleAddressItem) => (
               <AddressCard
-                // selectedId={selectedId}
+                selectedId={selectedId}
                 handleDeleteAddress={handleDeleteAddress}
                 addressInfo={singleAddressItem}
                 handleEditAddress={handleEditAddress}
-                // setCurrentSelectedAddress={setCurrentSelectedAddress}
+                setCurrentSelectedAddress={setCurrentSelectedAddress}
               />
             ))
           : null}

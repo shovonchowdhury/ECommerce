@@ -22,6 +22,8 @@ import ShoppingCheckout from "./pages/shoppingView/ShoppingCheckout.jsx";
 import CheckAuth from "./components/common/CheckAuth.jsx";
 import UnAuthPage from "./pages/UnAuthPage.jsx";
 import { PersistGate } from "redux-persist/integration/react";
+import PaypalReturn from "./pages/shoppingView/PaypalReturn.jsx";
+import PaymentSuccess from "./pages/shoppingView/PaymentSuccess.jsx";
 
 const router = createBrowserRouter([
   {
@@ -99,6 +101,14 @@ const router = createBrowserRouter([
           {
             path: "/shop/checkout",
             element: <ShoppingCheckout />,
+          },
+          {
+            path: "/shop/paypal-return",
+            element: <PaypalReturn />,
+          },
+          {
+            path: "/shop/payment-success",
+            element: <PaymentSuccess />,
           },
         ],
       },
