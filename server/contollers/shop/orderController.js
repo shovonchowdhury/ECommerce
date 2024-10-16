@@ -26,8 +26,8 @@ const createOrder = async (req, res) => {
         payment_method: "paypal",
       },
       redirect_urls: {
-        return_url: "http://localhost:5173/shop/paypal-return",
-        cancel_url: "http://localhost:5173/shop/paypal-cancel",
+        return_url: `${process.env.CLIENT_BASE_URL}/shop/paypal-return`,
+        cancel_url: `${process.env.CLIENT_BASE_URL}/shop/paypal-cancel`,
       },
       transactions: [
         {
@@ -108,6 +108,8 @@ const capturePayment = async (req, res) => {
       });
     }
 
+    console.log("taka deya hoyeche");
+
     order.paymentStatus = "paid";
     order.orderStatus = "confirmed";
     order.paymentId = paymentId;
@@ -127,8 +129,10 @@ const capturePayment = async (req, res) => {
 
       await product.save();
     }
+    
 
     const getCartId = order.cartId;
+    console.log(getCartId)
     await Cart.findByIdAndDelete(getCartId);
 
     await order.save();

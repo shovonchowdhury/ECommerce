@@ -1,5 +1,10 @@
+import AdminOrdersView from "@/components/adminView/AdminOrdersView";
 import React from "react";
 
 export default function AdminOrders() {
-  return <div>Admin Orders</div>;
+  return (
+    <div>
+      <AdminOrdersView />
+    </div>
+  );
 }
