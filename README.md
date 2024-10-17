@@ -2,6 +2,10 @@
 
 This is a full-stack eCommerce web application built using Node.js, Express.js, MongoDB, React.js, and Tailwind CSS. The project has two separate views: **Normal User View (Shopping View)** and **Admin View**.
 
+## Live Demo
+
+Check out the live project here: [ECommerce Web Application](https://ecommerce-client-3.onrender.com)
+
 ## Features
 
 ### Shopping View (User View)
@@ -52,6 +56,6 @@ To run this project locally, ensure you have the following installed on your mac
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/shovonchowdhury/ECommerce.git
-cd ECommerce
+git clone https://github.com/yourusername/ecommerce-app.git
+cd ecommerce-app
 ```
