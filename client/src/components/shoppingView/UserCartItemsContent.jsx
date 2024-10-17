@@ -6,7 +6,6 @@ import {
   deleteCartItem,
   updateCartQuantity,
 } from "@/store/slice/shop/shoppingCartSlice";
-// import { useToast } from "../ui/use-toast";
 
 function UserCartItemsContent({ cartItem }) {
   const { user } = useSelector((state) => state.auth);

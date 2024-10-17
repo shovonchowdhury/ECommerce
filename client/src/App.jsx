@@ -1,7 +1,4 @@
 import { Outlet, Route, Routes } from "react-router-dom";
-import Auth from "./layout/Authlayout";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
 import { Toaster } from "./components/ui/toaster";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";

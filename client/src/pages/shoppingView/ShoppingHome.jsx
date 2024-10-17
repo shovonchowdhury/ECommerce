@@ -1,7 +1,4 @@
 import { Button } from "@/components/ui/button";
-import bannerOne from "../../assets/banner-1.webp";
-import bannerTwo from "../../assets/banner-2.webp";
-import bannerThree from "../../assets/banner-3.webp";
 import {
   Airplay,
   BabyIcon,
@@ -36,9 +33,7 @@ import {
   addToCart,
   fetchCartItems,
 } from "@/store/slice/shop/shoppingCartSlice";
-// import { useToast } from "@/components/ui/use-toast";
 import ProductDetailsDialog from "@/components/shoppingView/ProductDetailsDialog";
-// import { getFeatureImages } from "@/store/common-slice";
 import { useToast } from "@/hooks/use-toast";
 import HMIcon from "@/components/common/HMIcon";
 import { getFeatureImages } from "@/store/slice/commonSlice";

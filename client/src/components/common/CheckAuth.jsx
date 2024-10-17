@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Progress } from "@/components/ui/progress";
 import { useEffect, useState } from "react";
 
@@ -11,7 +10,7 @@ export default function CheckAuth({ children }) {
   );
 
   const location = useLocation();
-  console.log(isAuthenticated, user, location.pathname);
+  // console.log(isAuthenticated, user, location.pathname);
 
   const [progress, setProgress] = useState(0);
 

@@ -1,4 +1,3 @@
-// import AdminHeader from "@/components/adminView/adminHeader";
 import AdminHeader from "@/components/adminView/AdminHeader";
 import AdminSidebar from "@/components/adminView/AdminSidebar";
 import React, { useState } from "react";

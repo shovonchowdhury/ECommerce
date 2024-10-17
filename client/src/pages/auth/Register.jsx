@@ -2,7 +2,6 @@ import CommonForm from "@/components/common/CommonForm";
 import { registerFormControls } from "@/config";
 import { useToast } from "@/hooks/use-toast";
 import { registerUser } from "@/store/slice/authSlice";
-import { Title } from "@radix-ui/react-toast";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -25,11 +24,6 @@ export default function Register() {
     event.preventDefault();
 
     dispatch(registerUser(formData)).then((data) => {
-      // (data?.payload?.success &&
-      //   toast({ title: data?.payload?.message }) &&
-      //   navigate("/auth/login")) ||
-      //   toast({ title: data?.payload?.message, variant: "destructive" });
-
       if (data?.payload?.success) {
         toast({
           title: data?.payload?.message,

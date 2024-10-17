@@ -1,6 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import accImg from "../../assets/account.jpg";
-// import ShoppingOreders from "@/components/shoppingView/ShoppingOreders";
 import Address from "@/components/shoppingView/Address";
 import ShoppingOrders from "@/components/shoppingView/ShoppingOrders";
 
