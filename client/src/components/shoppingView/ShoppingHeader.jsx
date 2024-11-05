@@ -85,7 +85,7 @@ function HeaderRightContent() {
   console.log(user);
 
   return (
-    <div className="flex lg:items-center lg:flex-row flex-col gap-4">
+    <div className="flex lg:items-center flex-row  gap-4 mt-2 lg:mt-0">
       <Sheet open={openCartSheet} onOpenChange={() => setOpenCartSheet(false)}>
         <Button
           onClick={() => setOpenCartSheet(true)}
@@ -151,7 +151,10 @@ export default function ShoppingHeader() {
               <span className="sr-only">Toggle header menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-full max-w-xs">
+          <SheetContent
+            side="left"
+            className="w-full max-w-xs flex justify-between"
+          >
             <MenuItems />
             <HeaderRightContent />
           </SheetContent>
